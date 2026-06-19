@@ -1,0 +1,71 @@
+Algorithm Walkthrough: Bubble Sort (Descending Order)
+Initial Array: [1, 2, 3, 4, 5]
+Target Array: [5, 4, 3, 2, 1] (Highest to lowest)
+
+The Logic
+Bubble Sort works by repeatedly stepping through the list, comparing adjacent elements, and swapping them if they are in the wrong order.
+
+Since we want to sort in descending order, the rule is: If the number on the left is smaller than the number on the right, swap them. This causes the smallest numbers to "bubble" to the end of the array.
+
+Step-by-Step Execution
+Below is the complete trace of how the algorithm processes the array. The numbers currently being compared are wrapped in brackets.
+
+Pass 1
+We start from the beginning and push the absolute smallest number (1) all the way to the end.
+
+[1, 2], 3, 4, 5 ➔ 1 is smaller than 2. Swap.
+
+2, [1, 3], 4, 5 ➔ 1 is smaller than 3. Swap.
+
+2, 3, [1, 4], 5 ➔ 1 is smaller than 4. Swap.
+
+2, 3, 4, [1, 5] ➔ 1 is smaller than 5. Swap.
+
+Array after Pass 1: [2, 3, 4, 5, 1]
+(The number 1 is now locked in its correct final position).
+
+Pass 2
+We start from the beginning again to move the next smallest number (2) toward the end.
+
+[2, 3], 4, 5, 1 ➔ 2 is smaller than 3. Swap.
+
+3, [2, 4], 5, 1 ➔ 2 is smaller than 4. Swap.
+
+3, 4, [2, 5], 1 ➔ 2 is smaller than 5. Swap.
+
+Note: We don't need to compare with 1 because it's already sorted.
+
+Array after Pass 2: [3, 4, 5, 2, 1]
+(The numbers 2 and 1 are now locked).
+
+Pass 3
+We repeat the process for the next number (3).
+
+[3, 4], 5, 2, 1 ➔ 3 is smaller than 4. Swap.
+
+4, [3, 5], 2, 1 ➔ 3 is smaller than 5. Swap.
+
+Array after Pass 3: [4, 5, 3, 2, 1]
+(The numbers 3, 2, and 1 are locked).
+
+Pass 4
+One final pass to sort the remaining numbers at the front.
+
+[4, 5], 3, 2, 1 ➔ 4 is smaller than 5. Swap.
+
+Final Sorted Array: [5, 4, 3, 2, 1]
+
+
+Code:
+
+function sortByPriorityDescending(crew) {
+  for (let i = 0; i < crew.length - 1; i++) {
+    for (let j = 0; j < crew.length - 1 - i; j++) {
+      if (crew[j].priority < crew[j + 1].priority) {
+        const temp = crew[j];
+        crew[j] = crew[j + 1];
+        crew[j + 1] = temp;
+      }
+    }
+  }
+}
